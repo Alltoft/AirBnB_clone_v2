@@ -34,18 +34,11 @@ echo "
     Holberton School
   </body>
 </html>
-ubuntu@89-web-01:~/$ curl localhost/hbnb_static/index.html
-<html>
-  <head>
-  </head>
-  <body>
-    Holberton School
-  </body>
-</html>
 " | sudo tee /data/web_static/releases/test/index.html
 sudo ln -sf /data/web_static/releases/test/ /data/web_static/current
 sudo chown -R ubuntu:ubuntu /data/
-echo "
-    location /hbnb_static/ {
-        alias /data/web_static/current/
-    }" | sudo tee -a /etc/nginx/sites-available/default
+sudo sed -i "/server_name _;/a \
+    location /hbnb_static {\
+        alias /data/web_static/current/;\
+    }" /etc/nginx/sites-available/default
+sudo service nginx restart
