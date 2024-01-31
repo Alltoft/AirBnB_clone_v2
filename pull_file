@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# a Bash script that transfers a file from our client to a server
+
+if [ "$#" -lt 2 ]; then
+    echo "Usage: 0-transfer_file PATH_TO_FILE IP USERNAME PATH_TO_SSH_KEY"
+    exit 1
+fi
+
+COPIED_PATH="$1"
+server_ip="$2"
+
+sudo scp -i ~/.ssh/id_rsa ubuntu@"$server_ip":"$COPIED_PATH" ./
