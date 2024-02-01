@@ -53,7 +53,7 @@ def do_deploy(archive_path):
         # Set the symbolic link path
         sym_link = "/data/web_static/current"
 
-        run('mkdir - p {}'.format(rem_dir_path))
+        run('mkdir -p {}'.format(rem_dir_path))
         run('tar -xzf /tmp/{} -C {}'.format(file_name, rem_dir_path))
         run('rm /tmp/{}'.format(file_name))
         run('mv {}/web_static/* {}'.format(rem_dir_path, rem_dir_path))
