@@ -45,7 +45,7 @@ def do_deploy(archive_path):
         file_list = file_name.split('.')
 
         # Get the file name without the extension
-        file_no_ext = file_list[1]
+        file_no_ext = file_list[0]
 
         # Set the remote directory path
         rem_dir_path = "/data/web_static/releases/{}/".format(file_no_ext)
