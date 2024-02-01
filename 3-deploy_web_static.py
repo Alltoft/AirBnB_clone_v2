@@ -68,3 +68,12 @@ def do_deploy(archive_path):
         return True
     except Exception:
         return False
+
+
+def deploy():
+    """creates and distributes an archive to the web servers"""
+    path = do_pack()
+    if os.path.exists(path) is False:
+        return False
+    new_val = do_deploy(path)
+    return new_val
