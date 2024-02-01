@@ -10,6 +10,7 @@ from datetime import datetime
 env.hosts = ['52.91.126.247', '35.153.19.245']
 env.user = 'ubuntu'
 
+
 def do_pack():
     """
     a Fabric script that generates a .tgz archive from the contents of the
@@ -23,10 +24,13 @@ def do_pack():
         local("mkdir -p {}".format(dir))
         local(command)
         return "{}/{}".format(dir, file_name)
-    except:
+    except Exception:
         return None
 
+
 def do_deploy(archive_path):
+    """Returns True if all operations have been done correctly
+    otherwise returns False"""
     # Check if the archive_path exists
     if not os.path.exists(archive_path):
         return False
