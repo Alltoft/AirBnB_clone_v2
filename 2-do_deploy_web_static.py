@@ -29,7 +29,6 @@ def do_pack():
 def do_deploy(archive_path):
     # Check if the archive_path exists
     if not os.path.exists(archive_path):
-        print('false')
         return False
 
     try:
