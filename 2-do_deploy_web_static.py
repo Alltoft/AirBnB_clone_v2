@@ -4,16 +4,32 @@ a Fabric script (based on the file 1-pack_web_static.py) that distributes
 an archive to your web servers, using the function do_deploy
 """
 import os
-from fabric.api import run, put, execute, env
-
+from fabric.api import run, put, env, local
+from datetime import datetime
 # Set the hosts and user for Fabric
 env.hosts = ['52.91.126.247', '35.153.19.245']
 env.user = 'ubuntu'
 
+def do_pack():
+    """
+    a Fabric script that generates a .tgz archive from the contents of the
+    web_static folder of your AirBnB Clone repo, using the function do_pack
+    """
+    try:
+        dir = "versions"
+        time_now = datetime.now().strftime("%Y%m%d%H%M%S")
+        file_name = "web_static_{}.tgz".format(time_now)
+        command = "tar -cvzf {}/{} web_static".format(dir, file_name)
+        local("mkdir -p {}".format(dir))
+        local(command)
+        return "{}/{}".format(dir, file_name)
+    except:
+        return None
 
 def do_deploy(archive_path):
     # Check if the archive_path exists
     if not os.path.exists(archive_path):
+        print('false')
         return False
 
     try:
