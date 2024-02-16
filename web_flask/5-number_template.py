@@ -19,7 +19,7 @@ def display():
 
 @app.route("/c/<name>", strict_slashes=False)
 def c(name):
-    """a Methodthat writes C + {name} message"""
+    """a Method that writes C + {name} message"""
     new_name = name.replace("_", " ")
     return "C {}".format(new_name)
 
@@ -34,11 +34,13 @@ def python(text="is cool"):
 
 @app.route("/number/<int:n>", strict_slashes=False)
 def number(n):
+    """a Method that writes (n) is a number"""
     return "{} is a number".format(n)
 
 
 @app.route("/number_template/<int:n>", strict_slashes=False)
 def number_template(n):
+    """a Method that writes h1(n)/h1 is a number"""
     return render_template('5-number.html')
 
 
