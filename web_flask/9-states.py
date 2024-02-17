@@ -18,7 +18,7 @@ def display_by_id(id):
     for state in storage.all(State).values():
         if state.id == id:
             return render_template('9-states.html', state=state, id=id)
-    return render_template('9-states.html', state=state, id=id)
+    return render_template('9-states.html')
 
 
 @app.route("/states", strict_slashes=False)
